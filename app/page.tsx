@@ -1,422 +1,165 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-
-/* ── Design tokens ────────────────────────────── */
-const T = {
-  navy: "#0d1f3c",
-  navyDeep: "#071429",
-  blue: "#1d4ed8",
-  blueMid: "#2563eb",
-  teal: "#0d9488",
-  tealLight: "#ccfbf1",
-  tealMid: "#14b8a6",
-  white: "#ffffff",
-  offWhite: "#f8fafc",
-  slate: "#f1f5f9",
-  border: "#e2e8f0",
-  muted: "#64748b",
-  mutedDark: "#475569",
-};
 
 const features = [
   {
     icon: "🎯",
     title: "Language Objectives",
-    desc: "Generate WIDA-aligned language objectives that pair with your content objectives.",
-    color: T.tealLight,
+    desc: "Generate WIDA-aligned language objectives for multilingual learners.",
+    href: "/support",
+    color: "#ccfbf1",
   },
   {
     icon: "📚",
-    title: "Vocabulary Scaffolds",
-    desc: "Create tiered vocabulary supports with student-friendly definitions.",
-    color: "#dbeafe",
+    title: "Greek & Latin Roots",
+    desc: "Decode academic vocabulary using roots, prefixes, suffixes, and cognates.",
+    href: "/roots",
+    color: "#ede9fe",
   },
   {
     icon: "💬",
     title: "Sentence Frames",
-    desc: "Generate scaffolded sentence starters for multilingual learners.",
-    color: "#fef9c3",
+    desc: "Create scaffolded academic sentence frames for classroom discussions.",
+    href: "/support",
+    color: "#dbeafe",
+  },
+  {
+    icon: "📝",
+    title: "Vocabulary Supports",
+    desc: "Generate multilingual vocabulary lists and academic language supports.",
+    href: "/support",
+    color: "#fef3c7",
   },
   {
     icon: "📋",
     title: "Chunked Directions",
-    desc: "Break multi-step directions into simplified student-friendly steps.",
+    desc: "Break down classroom instructions into accessible student-friendly steps.",
+    href: "/support",
     color: "#fce7f3",
   },
   {
-    icon: "🖼️",
-    title: "Visual Supports",
-    desc: "Get visual scaffolding ideas and classroom support strategies.",
-    color: "#ede9fe",
-  },
-  {
-    icon: "⚡",
-    title: "Differentiated Output",
-    desc: "Generate full support packs or targeted support plans instantly.",
+    icon: "🌍",
+    title: "Multilingual Learning",
+    desc: "Support ELL, ESOL, bilingual, and multilingual classrooms with ease.",
+    href: "/about",
     color: "#dcfce7",
   },
 ];
 
 export default function HomePage() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   return (
-    <>
-      <style>{`
-        .nav-link:hover {
-          color: ${T.tealMid} !important;
-        }
-
-        .btn-primary:hover {
-          transform: translateY(-2px);
-        }
-
-        .feat-card:hover {
-          transform: translateY(-5px);
-        }
-
-        @media (max-width: 860px) {
-          .desktop-nav {
-            display: none !important;
-          }
-
-          .hamburger {
-            display: flex !important;
-          }
-
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .feat-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-
-        @media (min-width: 861px) {
-          .hamburger {
-            display: none !important;
-          }
-
-          .mobile-menu {
-            display: none !important;
-          }
-        }
-      `}</style>
-
-      {/* HEADER */}
-      <header
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 200,
-          background: "rgba(255,255,255,0.96)",
-          backdropFilter: "blur(14px)",
-          borderBottom: `1px solid ${T.border}`,
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1160,
-            margin: "0 auto",
-            padding: "0 1.75rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: 70,
-          }}
-        >
-          <Link
-            href="/"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              lineHeight: 1.15,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 700,
-                fontSize: "1.1rem",
-                color: T.navy,
-              }}
-            >
-              EduPrompt
-            </span>
-
-            <span
-              style={{
-                fontSize: "0.68rem",
-                fontWeight: 600,
-                color: T.tealMid,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-              }}
-            >
-              Multilingual Support
-            </span>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav
-            className="desktop-nav"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "2rem",
-            }}
-          >
-            {[
-              ["Home", "/"],
-              ["Support Builder", "/support"],
-              ["About", "/about"],
-            ].map(([label, href]) => (
-              <Link
-                key={label}
-                href={href}
-                className="nav-link"
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: 500,
-                  color: T.mutedDark,
-                }}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile button */}
-          <button
-            className="hamburger"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            style={{
-              display: "none",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              flexDirection: "column",
-              gap: "5px",
-            }}
-          >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                style={{
-                  width: 22,
-                  height: 2,
-                  background: T.navy,
-                  display: "block",
-                }}
-              />
-            ))}
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        {mobileOpen && (
-          <div
-            className="mobile-menu"
-            style={{
-              padding: "1.25rem",
-              borderTop: `1px solid ${T.border}`,
-              background: T.white,
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-            }}
-          >
-            {[
-              ["Home", "/"],
-              ["Support Builder", "/support"],
-              ["About", "/about"],
-            ].map(([label, href]) => (
-              <Link
-                key={label}
-                href={href}
-                style={{
-                  color: T.navy,
-                  fontWeight: 600,
-                }}
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        )}
-      </header>
-
+    <main
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #f8fafc 100%)",
+        color: "#0d1f3c",
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
       {/* HERO */}
       <section
         style={{
-          padding: "5rem 1.75rem",
-          background:
-            "linear-gradient(150deg, #f0fdfa 0%, #ffffff 45%, #eff6ff 100%)",
+          padding: "90px 20px 70px",
+          textAlign: "center",
         }}
       >
         <div
-          className="hero-grid"
           style={{
-            maxWidth: 1100,
+            maxWidth: "1100px",
             margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: "4rem",
-            alignItems: "center",
           }}
         >
-          <div>
-            <span
-              style={{
-                display: "inline-block",
-                background: T.tealLight,
-                color: T.teal,
-                borderRadius: 100,
-                padding: "0.35rem 1rem",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                marginBottom: "1.5rem",
-              }}
-            >
-              WIDA-Aligned • ELL Support
-            </span>
-
-            <h1
-              style={{
-                fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                color: T.navy,
-                marginBottom: "1.5rem",
-              }}
-            >
-              Build Classroom-Ready Supports for Multilingual Learners
-            </h1>
-
-            <p
-              style={{
-                fontSize: "1.1rem",
-                color: T.muted,
-                lineHeight: 1.8,
-                marginBottom: "2rem",
-                maxWidth: 560,
-              }}
-            >
-              Create WIDA-aligned language objectives, vocabulary supports,
-              sentence frames, chunked directions, and scaffolded activities in
-              minutes.
-            </p>
-
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
-              }}
-            >
-              <Link href="/support">
-                <button
-                  className="btn-primary"
-                  style={{
-                    background: T.blue,
-                    color: T.white,
-                    border: "none",
-                    borderRadius: 11,
-                    padding: "0.9rem 2rem",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                  }}
-                >
-                  Open Support Builder →
-                </button>
-              </Link>
-
-              <Link href="/about">
-                <button
-                  style={{
-                    background: "transparent",
-                    border: `1.5px solid ${T.border}`,
-                    borderRadius: 11,
-                    padding: "0.85rem 1.75rem",
-                    fontSize: "1rem",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    color: T.navy,
-                  }}
-                >
-                  Learn More
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Preview card */}
           <div
             style={{
-              background: T.white,
-              borderRadius: 20,
-              border: `1px solid ${T.border}`,
-              padding: "2rem",
-              boxShadow: "0 24px 72px rgba(13,31,60,0.08)",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "#ccfbf1",
+              color: "#0f766e",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              fontWeight: 700,
+              fontSize: "14px",
+              marginBottom: "28px",
             }}
           >
-            <p
-              style={{
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                color: T.teal,
-                marginBottom: "1rem",
-              }}
-            >
-              SAMPLE OUTPUT PREVIEW
-            </p>
+            🌍 WIDA-Aligned Multilingual Learning Tools
+          </div>
 
-            {[
-              {
-                label: "Language Objective",
-                value:
-                  "Students will explain the water cycle using sequence words.",
-              },
-              {
-                label: "Key Vocabulary",
-                value:
-                  "evaporation, condensation, precipitation, cycle",
-              },
-              {
-                label: "Sentence Frame",
-                value:
-                  '"First, water ____. Then, it ____ because ____."',
-              },
-            ].map((item) => (
-              <div key={item.label} style={{ marginBottom: "1rem" }}>
-                <p
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "0.75rem",
-                    marginBottom: "0.3rem",
-                    color: T.navy,
-                  }}
-                >
-                  {item.label}
-                </p>
+          <h1
+            style={{
+              fontSize: "clamp(3rem, 6vw, 5rem)",
+              lineHeight: 1.05,
+              marginBottom: "24px",
+              fontWeight: 800,
+              letterSpacing: "-2px",
+            }}
+          >
+            EduPrompt
+            <br />
+            Multilingual Support
+          </h1>
 
-                <div
-                  style={{
-                    background: T.offWhite,
-                    padding: "0.7rem",
-                    borderRadius: 8,
-                    borderLeft: `3px solid ${T.tealMid}`,
-                    color: T.mutedDark,
-                    fontSize: "0.85rem",
-                  }}
-                >
-                  {item.value}
-                </div>
-              </div>
-            ))}
+          <p
+            style={{
+              maxWidth: "760px",
+              margin: "0 auto",
+              fontSize: "20px",
+              lineHeight: 1.8,
+              color: "#64748b",
+            }}
+          >
+            Create classroom-ready multilingual supports including language
+            objectives, sentence frames, vocabulary scaffolds, Greek & Latin
+            roots instruction, and differentiated learning tools for ELL and
+            ESOL classrooms.
+          </p>
+
+          <div
+            style={{
+              marginTop: "42px",
+              display: "flex",
+              justifyContent: "center",
+              gap: "18px",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link href="/support">
+              <button
+                style={{
+                  background: "#2563eb",
+                  color: "white",
+                  border: "none",
+                  padding: "16px 28px",
+                  borderRadius: "14px",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  cursor: "pointer",
+                  boxShadow: "0 10px 30px rgba(37,99,235,0.25)",
+                }}
+              >
+                Open Support Builder →
+              </button>
+            </Link>
+
+            <Link href="/roots">
+              <button
+                style={{
+                  background: "white",
+                  color: "#0d1f3c",
+                  border: "1.5px solid #e2e8f0",
+                  padding: "16px 28px",
+                  borderRadius: "14px",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  cursor: "pointer",
+                }}
+              >
+                Open Roots Guide →
+              </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -424,98 +167,209 @@ export default function HomePage() {
       {/* FEATURES */}
       <section
         style={{
-          padding: "5rem 1.75rem",
-          background: T.white,
+          padding: "30px 20px 90px",
         }}
       >
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <h2
+        <div
+          style={{
+            maxWidth: "1150px",
+            margin: "0 auto",
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            <p
               style={{
-                fontSize: "2.4rem",
-                fontWeight: 700,
-                color: T.navy,
-                marginBottom: "1rem",
+                color: "#0f766e",
+                fontWeight: 800,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                fontSize: "13px",
+                marginBottom: "12px",
               }}
             >
-              Six tools. One connected workflow.
+              Classroom Tools
+            </p>
+
+            <h2
+              style={{
+                fontSize: "clamp(2rem,4vw,3rem)",
+                marginBottom: "16px",
+                fontWeight: 800,
+              }}
+            >
+              Everything teachers need in one place
             </h2>
 
             <p
               style={{
-                color: T.muted,
-                maxWidth: 600,
+                maxWidth: "680px",
                 margin: "0 auto",
-                lineHeight: 1.8,
+                color: "#64748b",
+                fontSize: "18px",
+                lineHeight: 1.7,
               }}
             >
-              Every output is designed for classroom implementation and can be
-              pasted directly into lesson plans or student supports.
+              Designed for multilingual learners, ELL instruction, ESOL
+              classrooms, literacy intervention, and academic vocabulary
+              support.
             </p>
           </div>
 
           <div
-            className="feat-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
-              gap: "1.5rem",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
             }}
           >
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="feat-card"
+            {features.map((feature) => (
+              <Link
+                key={feature.title}
+                href={feature.href}
                 style={{
-                  background: T.white,
-                  border: `1px solid ${T.border}`,
-                  borderRadius: 18,
-                  padding: "2rem",
-                  transition: "0.25s",
-                  boxShadow: "0 4px 14px rgba(13,31,60,0.05)",
+                  textDecoration: "none",
                 }}
               >
                 <div
                   style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 12,
-                    background: f.color,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.4rem",
-                    marginBottom: "1rem",
+                    background: "white",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: "24px",
+                    padding: "32px",
+                    height: "100%",
+                    transition: "0.2s ease",
+                    boxShadow: "0 8px 30px rgba(15,23,42,0.04)",
+                    cursor: "pointer",
                   }}
                 >
-                  {f.icon}
+                  <div
+                    style={{
+                      width: "64px",
+                      height: "64px",
+                      borderRadius: "18px",
+                      background: feature.color,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "30px",
+                      marginBottom: "24px",
+                    }}
+                  >
+                    {feature.icon}
+                  </div>
+
+                  <h3
+                    style={{
+                      fontSize: "24px",
+                      marginBottom: "14px",
+                      fontWeight: 700,
+                      color: "#0d1f3c",
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
+
+                  <p
+                    style={{
+                      color: "#64748b",
+                      lineHeight: 1.8,
+                      fontSize: "16px",
+                    }}
+                  >
+                    {feature.desc}
+                  </p>
+
+                  <div
+                    style={{
+                      marginTop: "22px",
+                      color: "#2563eb",
+                      fontWeight: 700,
+                      fontSize: "15px",
+                    }}
+                  >
+                    Open Tool →
+                  </div>
                 </div>
-
-                <h3
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "1.05rem",
-                    color: T.navy,
-                    marginBottom: "0.6rem",
-                  }}
-                >
-                  {f.title}
-                </h3>
-
-                <p
-                  style={{
-                    color: T.muted,
-                    lineHeight: 1.7,
-                    fontSize: "0.88rem",
-                  }}
-                >
-                  {f.desc}
-                </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-    </>
+
+      {/* CTA */}
+      <section
+        style={{
+          background: "#0d1f3c",
+          color: "white",
+          padding: "90px 20px",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "850px",
+            margin: "0 auto",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "clamp(2rem,4vw,3.5rem)",
+              marginBottom: "20px",
+              fontWeight: 800,
+            }}
+          >
+            Support every multilingual learner
+          </h2>
+
+          <p
+            style={{
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.8,
+              fontSize: "19px",
+              marginBottom: "36px",
+            }}
+          >
+            Build classroom-ready multilingual supports in minutes with
+            EduPrompt Multilingual Support.
+          </p>
+
+          <Link href="/support">
+            <button
+              style={{
+                background: "#14b8a6",
+                color: "white",
+                border: "none",
+                padding: "18px 34px",
+                borderRadius: "16px",
+                fontWeight: 700,
+                fontSize: "17px",
+                cursor: "pointer",
+              }}
+            >
+              Launch Support Builder →
+            </button>
+          </Link>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer
+        style={{
+          background: "#071429",
+          color: "rgba(255,255,255,0.7)",
+          padding: "28px 20px",
+          textAlign: "center",
+          fontSize: "14px",
+        }}
+      >
+        © {new Date().getFullYear()} EduPrompt Solutions • Multilingual Support
+      </footer>
+    </main>
   );
 }
