@@ -1,146 +1,103 @@
 import Link from "next/link";
 
-const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: "🏠" },
-  { label: "Support Builder", href: "/dashboard/support-builder", icon: "🌍" },
-  { label: "Roots & Vocabulary", href: "/dashboard/roots", icon: "📚" },
-  { label: "Accommodations", href: "/dashboard/accommodations", icon: "♿" },
-  { label: "Progress Monitoring", href: "/dashboard/progress", icon: "📈" },
-  { label: "Parent Communication", href: "/dashboard/parent-comms", icon: "💬" },
-  { label: "Settings", href: "/dashboard/settings", icon: "⚙️" },
+const cards = [
+  {
+    title: "Support Builder",
+    desc: "Generate WIDA-aligned language objectives, sentence frames, vocabulary supports, and chunked directions.",
+    href: "/dashboard/support-builder",
+    icon: "🌍",
+  },
+  {
+    title: "Roots & Vocabulary",
+    desc: "Open Greek and Latin roots, academic vocabulary, cognates, and word attack strategies.",
+    href: "/dashboard/roots",
+    icon: "📚",
+  },
+  {
+    title: "Accommodations",
+    desc: "Build classroom and testing accommodations for multilingual learners.",
+    href: "/dashboard/accommodations",
+    icon: "♿",
+  },
+  {
+    title: "Progress Monitoring",
+    desc: "Track vocabulary, reading, writing, speaking, and listening growth.",
+    href: "/dashboard/progress",
+    icon: "📈",
+  },
+  {
+    title: "Parent Communication",
+    desc: "Create family-friendly multilingual parent messages and updates.",
+    href: "/dashboard/parent-comms",
+    icon: "💬",
+  },
+  {
+    title: "Settings",
+    desc: "Manage platform preferences and future account settings.",
+    href: "/dashboard/settings",
+    icon: "⚙️",
+  },
 ];
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardHomePage() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        background: "#f8fafc",
-        color: "#0d1f3c",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <aside
+    <div>
+      <h1 style={{ fontSize: "38px", marginBottom: "10px" }}>
+        Welcome to EduPrompt Multilingual Support
+      </h1>
+
+      <p
         style={{
-          width: "270px",
-          background: "#071429",
-          color: "white",
-          padding: "24px 18px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          position: "sticky",
-          top: 0,
-          height: "100vh",
+          color: "#64748b",
+          fontSize: "18px",
+          lineHeight: 1.7,
+          maxWidth: "760px",
+          marginBottom: "30px",
         }}
       >
-        <Link href="/" style={{ textDecoration: "none", color: "white" }}>
-          <div style={{ fontSize: "22px", fontWeight: 900 }}>EduPrompt</div>
-          <div
-            style={{
-              fontSize: "12px",
-              color: "#14b8a6",
-              fontWeight: 800,
-              letterSpacing: "1px",
-              marginTop: "4px",
-            }}
-          >
-            MULTILINGUAL SUPPORT
-          </div>
-        </Link>
+        Use this dashboard to create classroom-ready language supports,
+        vocabulary scaffolds, accommodations, parent communication, and progress
+        monitoring tools for multilingual learners.
+      </p>
 
-        <nav style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gap: "20px",
+        }}
+      >
+        {cards.map((card) => (
+          <Link key={card.title} href={card.href} style={{ textDecoration: "none" }}>
+            <div
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                padding: "12px 14px",
-                borderRadius: "12px",
-                color: "rgba(255,255,255,0.78)",
-                textDecoration: "none",
-                fontWeight: 700,
-                fontSize: "14px",
+                background: "white",
+                border: "1px solid #e2e8f0",
+                borderRadius: "20px",
+                padding: "26px",
+                height: "100%",
+                boxShadow: "0 8px 24px rgba(15,23,42,0.05)",
               }}
             >
-              <span>{item.icon}</span>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+              <div style={{ fontSize: "34px", marginBottom: "16px" }}>
+                {card.icon}
+              </div>
 
-        <div
-          style={{
-            marginTop: "auto",
-            borderTop: "1px solid rgba(255,255,255,0.12)",
-            paddingTop: "18px",
-          }}
-        >
-          <Link
-            href="/"
-            style={{
-              color: "rgba(255,255,255,0.65)",
-              textDecoration: "none",
-              fontSize: "13px",
-              fontWeight: 700,
-            }}
-          >
-            ← Back to Main Site
-          </Link>
-        </div>
-      </aside>
+              <h2 style={{ fontSize: "22px", color: "#0d1f3c", marginBottom: "10px" }}>
+                {card.title}
+              </h2>
 
-      <section style={{ flex: 1, minWidth: 0 }}>
-        <header
-          style={{
-            height: "72px",
-            background: "white",
-            borderBottom: "1px solid #e2e8f0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "0 28px",
-            position: "sticky",
-            top: 0,
-            zIndex: 50,
-          }}
-        >
-          <div>
-            <div style={{ fontSize: "13px", color: "#64748b", fontWeight: 700 }}>
-              Teacher Workspace
+              <p style={{ color: "#64748b", lineHeight: 1.7 }}>
+                {card.desc}
+              </p>
+
+              <p style={{ color: "#0d9488", fontWeight: 800, marginTop: "18px" }}>
+                Open Tool →
+              </p>
             </div>
-            <div style={{ fontSize: "20px", fontWeight: 900 }}>
-              Multilingual Support Dashboard
-            </div>
-          </div>
-
-          <Link href="/support">
-            <button
-              style={{
-                background: "#0d9488",
-                color: "white",
-                border: "none",
-                borderRadius: "12px",
-                padding: "12px 18px",
-                fontWeight: 800,
-                cursor: "pointer",
-              }}
-            >
-              Quick Support Builder
-            </button>
           </Link>
-        </header>
-
-        <div style={{ padding: "30px" }}>{children}</div>
-      </section>
-    </main>
+        ))}
+      </div>
+    </div>
   );
 }
