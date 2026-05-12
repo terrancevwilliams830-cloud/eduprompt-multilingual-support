@@ -256,3 +256,260 @@ const ROOTS: Record<string, RootData[]> = {
       color: "orange",
     },
   ],
+  "🏗️ Action Roots": [
+    {
+      root: "port",
+      origin: "Latin",
+      meaning: "carry",
+      chips: ["transport", "export", "portable"],
+      breakdown:
+        'trans + port → "carry across"\nex + port → "carry out of a country"',
+      cogs: {
+        es: "transportar",
+        fr: "transporter",
+        ht: "transpòte",
+      },
+      color: "teal",
+    },
+    {
+      root: "tract",
+      origin: "Latin",
+      meaning: "pull, drag",
+      chips: ["attract", "subtract", "contract"],
+      breakdown:
+        'at + tract → "pull toward something"\nsub + tract → "pull away/take away"',
+      cogs: {
+        es: "atraer",
+        fr: "attirer",
+        ht: "atire",
+      },
+      color: "teal",
+    },
+    {
+      root: "ject",
+      origin: "Latin",
+      meaning: "throw",
+      chips: ["inject", "reject", "project"],
+      breakdown:
+        'in + ject → "throw/push into"\nre + ject → "throw back; refuse"',
+      cogs: {
+        es: "inyectar",
+        fr: "injecter",
+        ht: "enjekte",
+      },
+      color: "rose",
+    },
+    {
+      root: "struct",
+      origin: "Latin",
+      meaning: "build",
+      chips: ["construct", "structure", "instruct"],
+      breakdown:
+        'con + struct → "build together"\nde + struct + ion → "the act of un-building"',
+      cogs: {
+        es: "construir",
+        fr: "construire",
+        ht: "konstrwi",
+      },
+      color: "sage",
+    },
+    {
+      root: "form",
+      origin: "Latin",
+      meaning: "shape",
+      chips: ["transform", "formation", "reform"],
+      breakdown:
+        'trans + form → "change the shape/nature of"\nre + form → "shape again; improve"',
+      cogs: {
+        es: "transformar",
+        fr: "transformer",
+        ht: "transfòme",
+      },
+      color: "orange",
+    },
+    {
+      root: "rupt",
+      origin: "Latin",
+      meaning: "break",
+      chips: ["erupt", "interrupt", "disrupt"],
+      breakdown:
+        'inter + rupt → "break into/break apart"\ne + rupt → "break out"',
+      cogs: {
+        es: "interrumpir",
+        fr: "interrompre",
+        ht: "entèwonp",
+      },
+      color: "rose",
+    },
+    {
+      root: "gress",
+      origin: "Latin",
+      meaning: "step, go",
+      chips: ["progress", "congress", "regress"],
+      breakdown:
+        'pro + gress → "step forward; advance"\nre + gress → "step backward"',
+      cogs: {
+        es: "progreso",
+        fr: "progrès",
+        ht: "pwogrè",
+      },
+      color: "teal",
+    },
+    {
+      root: "vac",
+      origin: "Latin",
+      meaning: "empty",
+      chips: ["vacuum", "evacuate", "vacant"],
+      breakdown: 'e + vacu + ate → "empty out a place"',
+      cogs: {
+        es: "evacuar",
+        fr: "évacuer",
+        ht: "evakye",
+      },
+      color: "gold",
+    },
+  ],
+
+  "🫀 Body & People": [
+    {
+      root: "manu",
+      origin: "Latin",
+      meaning: "hand",
+      chips: ["manual", "manuscript", "manufacture"],
+      breakdown:
+        'manu + script → "written by hand"\nmanu + al → "done by hand"',
+      cogs: {
+        es: "manual",
+        fr: "manuel",
+        ht: "manyèl",
+      },
+      color: "rose",
+    },
+    {
+      root: "ped / pod",
+      origin: "Latin/Greek",
+      meaning: "foot",
+      chips: ["pedal", "podiatrist", "pedestrian"],
+      breakdown:
+        'ped + al → "pushed with the foot"\nped + estrian → "one who goes on foot"',
+      cogs: {
+        es: "pedal",
+        fr: "pédestre",
+        ht: "pedès",
+      },
+      color: "orange",
+    },
+    {
+      root: "cardi",
+      origin: "Greek",
+      meaning: "heart",
+      chips: ["cardiology", "cardiac", "cardiovascular"],
+      breakdown: 'cardi + ology → "study of the heart"',
+      cogs: {
+        es: "cardiología",
+        fr: "cardiologie",
+        ht: "kadyoloji",
+      },
+      color: "rose",
+    },
+    {
+      root: "path",
+      origin: "Greek",
+      meaning: "feeling, suffering",
+      chips: ["empathy", "sympathy", "apathy"],
+      breakdown:
+        'em + pathy → "feeling what another feels"\na + pathy → "without feeling; not caring"',
+      cogs: {
+        es: "empatía",
+        fr: "empathie",
+        ht: "anpati",
+      },
+      color: "purple",
+    },
+    {
+      root: "demo",
+      origin: "Greek",
+      meaning: "people",
+      chips: ["democracy", "demographic", "epidemic"],
+      breakdown:
+        'demo + cracy → "rule by the people"\ndemo + graphic → "data about people"',
+      cogs: {
+        es: "democracia",
+        fr: "démocratie",
+        ht: "demokrasi",
+      },
+      color: "sage",
+    },
+    {
+      root: "loc",
+      origin: "Latin",
+      meaning: "place",
+      chips: ["location", "relocate", "local"],
+      breakdown:
+        'loc + ation → "a specific place"\nre + loc + ate → "move to a new place"',
+      cogs: {
+        es: "localización",
+        fr: "localisation",
+        ht: "lokalizasyon",
+      },
+      color: "teal",
+    },
+    {
+      root: "cycle",
+      origin: "Greek",
+      meaning: "circle, wheel",
+      chips: ["recycle", "bicycle", "cyclone"],
+      breakdown:
+        're + cycle → "go around again"\nbi + cycle → "two wheels"',
+      cogs: {
+        es: "reciclar",
+        fr: "recycler",
+        ht: "resikle",
+      },
+      color: "orange",
+    },
+  ],
+};
+
+const PREFIXES = [
+  {
+    affix: "un-",
+    meaning: "not, opposite",
+    examples: ["unclear", "unknown", "unlikely"],
+    es: "in- / no",
+    fr: "in- / non-",
+    ht: "pa- / non-",
+  },
+  {
+    affix: "re-",
+    meaning: "again, back",
+    examples: ["rewrite", "recycle", "return"],
+    es: "re- (same!)",
+    fr: "re- (same!)",
+    ht: "re- (same!)",
+  },
+  {
+    affix: "pre-",
+    meaning: "before",
+    examples: ["preview", "predict", "prefix"],
+    es: "pre- (same!)",
+    fr: "pré- (same!)",
+    ht: "pre- (same!)",
+  },
+  {
+    affix: "post-",
+    meaning: "after",
+    examples: ["postwar", "posttest", "postpone"],
+    es: "post- (same!)",
+    fr: "post- (same!)",
+    ht: "apre-",
+  },
+  {
+    affix: "mis-",
+    meaning: "wrong, badly",
+    examples: ["misread", "mislead", "misunderstand"],
+    es: "mal-",
+    fr: "mal-",
+    ht: "mal-",
+  },
+];
