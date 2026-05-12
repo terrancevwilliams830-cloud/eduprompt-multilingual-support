@@ -513,3 +513,270 @@ const PREFIXES = [
     ht: "mal-",
   },
 ];
+const SUFFIXES = [
+  {
+    affix: "-ology / -logy",
+    meaning: "study of",
+    examples: ["biology", "psychology", "geology"],
+    es: "-ología",
+    fr: "-ologie",
+    ht: "-oloji",
+  },
+  {
+    affix: "-tion / -sion",
+    meaning: "act, process, state",
+    examples: ["narration", "discussion", "decision"],
+    es: "-ción / -sión",
+    fr: "-tion / -sion",
+    ht: "-syon / -yon",
+  },
+  {
+    affix: "-ist",
+    meaning: "person who studies/does",
+    examples: ["scientist", "journalist", "artist"],
+    es: "-ista",
+    fr: "-iste",
+    ht: "-is",
+  },
+  {
+    affix: "-er / -or",
+    meaning: "person who does",
+    examples: ["teacher", "actor", "creator"],
+    es: "-ador",
+    fr: "-eur",
+    ht: "-è",
+  },
+  {
+    affix: "-able / -ible",
+    meaning: "able to be",
+    examples: ["visible", "credible", "portable"],
+    es: "-able",
+    fr: "-able",
+    ht: "-ab",
+  },
+];
+
+const QUIZ_QS = [
+  {
+    w: "biography",
+    b: "bio (life) + graph (write)",
+    a: "A written account of someone’s life",
+    o: [
+      "A type of science",
+      "A written account of someone’s life",
+      "A measurement system",
+      "A government structure",
+    ],
+  },
+  {
+    w: "transport",
+    b: "trans (across) + port (carry)",
+    a: "To carry something from one place to another",
+    o: [
+      "To write clearly",
+      "To carry something from one place to another",
+      "To hear a sound",
+      "To study nature",
+    ],
+  },
+  {
+    w: "invisible",
+    b: "in- (not) + vis (see)",
+    a: "Not able to be seen",
+    o: [
+      "Easy to understand",
+      "Full of light",
+      "Not able to be seen",
+      "Able to be heard",
+    ],
+  },
+];
+
+const PRACTICE_WORDS = [
+  {
+    word: "biology",
+    parts: [
+      ["bio", "life"],
+      ["+logy", "study of"],
+    ],
+    meaning: "the study of life",
+  },
+  {
+    word: "transportation",
+    parts: [
+      ["trans", "across"],
+      ["+port", "carry"],
+      ["+ation", "process"],
+    ],
+    meaning: "the process of carrying something across",
+  },
+  {
+    word: "reconstruct",
+    parts: [
+      ["re-", "again"],
+      ["+struct", "build"],
+    ],
+    meaning: "to build again",
+  },
+];
+
+const COLOR_MAP: Record<
+  string,
+  {
+    bg: string;
+    border: string;
+    bar: string;
+  }
+> = {
+  teal: {
+    bg: "#d4eaf0",
+    border: "#aed4e0",
+    bar: "#2d6a7f",
+  },
+  rose: {
+    bg: "#f5dde0",
+    border: "#e8bfc5",
+    bar: "#a84c5a",
+  },
+  sage: {
+    bg: "#d8eedd",
+    border: "#b0d9bc",
+    bar: "#4c7a5a",
+  },
+  purple: {
+    bg: "#e5dff5",
+    border: "#c8bfe5",
+    bar: "#5c4a8a",
+  },
+  orange: {
+    bg: "#fde8d4",
+    border: "#f0c9a5",
+    bar: "#b8611a",
+  },
+  gold: {
+    bg: "#fdf5dc",
+    border: "#e8d68a",
+    bar: "#c9a84c",
+  },
+  blue: {
+    bg: "#d4e8f7",
+    border: "#a8cfe5",
+    bar: "#1e5f8a",
+  },
+};
+
+const TABS = [
+  { id: "roots", label: "📚 Roots" },
+  { id: "prefixes", label: "⬅️ Prefixes" },
+  { id: "suffixes", label: "➡️ Suffixes" },
+  { id: "practice", label: "✍️ Practice" },
+  { id: "quiz", label: "✏️ Quiz Me!" },
+];
+
+function shuffle<T>(arr: T[]): T[] {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function RootCard({ data }: { data: RootData }) {
+  const c = COLOR_MAP[data.color] ?? COLOR_MAP.teal;
+
+  return (
+    <div
+      style={{
+        background: c.bg,
+        border: `1.5px solid ${c.border}`,
+        borderRadius: 14,
+        padding: "1rem",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: 5,
+          height: "100%",
+          background: c.bar,
+        }}
+      />
+
+      <div
+        style={{
+          fontSize: "1.1rem",
+          fontWeight: 700,
+          marginBottom: "0.2rem",
+        }}
+      >
+        {data.root}
+      </div>
+
+      <div
+        style={{
+          fontSize: "0.65rem",
+          textTransform: "uppercase",
+          opacity: 0.6,
+          marginBottom: "0.35rem",
+        }}
+      >
+        {data.origin}
+      </div>
+
+      <div
+        style={{
+          fontWeight: 600,
+          marginBottom: "0.5rem",
+        }}
+      >
+        = {data.meaning}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "0.3rem",
+          marginBottom: "0.6rem",
+        }}
+      >
+        {data.chips.map((chip) => (
+          <span
+            key={chip}
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              borderRadius: 999,
+              padding: "0.15rem 0.55rem",
+              fontSize: "0.68rem",
+            }}
+          >
+            {chip}
+          </span>
+        ))}
+      </div>
+
+      <div
+        style={{
+          whiteSpace: "pre-line",
+          fontSize: "0.72rem",
+          color: "#555",
+          marginBottom: "0.6rem",
+        }}
+      >
+        {data.breakdown}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "0.3rem",
+        }}
+      >
+        <span>🇪🇸 {data.cogs.es}</span>
+        <span>🇫🇷 {data.cogs.fr}</span>
+        <span>🇭🇹 {data.cogs.ht}</span>
+      </div>
+    </div>
+  );
+}
