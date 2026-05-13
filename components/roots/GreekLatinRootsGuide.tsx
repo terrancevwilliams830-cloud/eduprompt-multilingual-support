@@ -1097,3 +1097,223 @@ function SubLabel({ text }: { text: string }) {
     </div>
   );
 }
+export default function GreekLatinRootsGuide() {
+  const [activeTab, setActiveTab] = useState("roots");
+
+  return (
+    <div
+      style={{
+        background: "#faf7f2",
+        color: "#0f1623",
+        minHeight: "100vh",
+      }}
+    >
+      <div
+        style={{
+          background: "#0f1623",
+          color: "#faf7f2",
+          padding: "1.8rem 1.5rem",
+          borderRadius: "0 0 22px 22px",
+        }}
+      >
+        <div
+          style={{
+            fontSize: "0.7rem",
+            fontWeight: 900,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#c9a84c",
+            marginBottom: "0.5rem",
+          }}
+        >
+          9th–10th Grade · Word Detectives
+        </div>
+
+        <h2
+          style={{
+            fontSize: "clamp(1.8rem, 4vw, 3rem)",
+            fontWeight: 900,
+            marginBottom: "0.6rem",
+          }}
+        >
+          Word <span style={{ color: "#c9a84c" }}>Power</span>: Greek & Latin
+          Roots
+        </h2>
+
+        <p
+          style={{
+            fontSize: "0.95rem",
+            color: "rgba(255,255,255,0.65)",
+            maxWidth: 680,
+            lineHeight: 1.7,
+          }}
+        >
+          Decode unfamiliar words using roots, prefixes, suffixes, cognates, and
+          home-language connections.
+        </p>
+      </div>
+
+      <div
+        style={{
+          background: "#c9a84c",
+          color: "#0f1623",
+          padding: "0.75rem 1.5rem",
+          display: "flex",
+          gap: "0.75rem",
+          flexWrap: "wrap",
+          fontWeight: 800,
+        }}
+      >
+        <span>🔑 Formula:</span>
+        <span>prefix + root + suffix = meaning you can decode</span>
+      </div>
+
+      <div
+        style={{
+          background: "white",
+          borderBottom: "1px solid #e2e8f0",
+          display: "flex",
+          gap: "0.5rem",
+          overflowX: "auto",
+          padding: "0 0.75rem",
+          position: "sticky",
+          top: 0,
+          zIndex: 20,
+        }}
+      >
+        {TABS.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            style={{
+              border: "none",
+              background: "transparent",
+              padding: "1rem 0.8rem",
+              fontWeight: activeTab === tab.id ? 900 : 700,
+              color: activeTab === tab.id ? "#0f1623" : "#64748b",
+              borderBottom:
+                activeTab === tab.id
+                  ? "3px solid #c9a84c"
+                  : "3px solid transparent",
+              cursor: "pointer",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <div
+        style={{
+          padding: "1.5rem",
+          maxWidth: 1100,
+          margin: "0 auto",
+        }}
+      >
+        {activeTab === "roots" && (
+          <div>
+            <SectionLabel text="Your Power Roots — Learn These & Unlock Hundreds of Words" />
+
+            {Object.entries(ROOTS).map(([section, cards]) => (
+              <div key={section}>
+                <SubLabel text={section} />
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns:
+                      "repeat(auto-fit, minmax(230px, 1fr))",
+                    gap: "0.85rem",
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  {cards.map((card) => (
+                    <RootCard key={card.root} data={card} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {activeTab === "prefixes" && (
+          <div>
+            <SectionLabel text="Prefixes — Add These to the Beginning of a Root Word" />
+            <AffixTable rows={PREFIXES} />
+          </div>
+        )}
+
+        {activeTab === "suffixes" && (
+          <div>
+            <SectionLabel text="Suffixes — Add These to the End of a Root Word" />
+            <AffixTable rows={SUFFIXES} />
+          </div>
+        )}
+
+        {activeTab === "practice" && (
+          <div>
+            <SectionLabel text="Practice Words — Break These Apart Using Your Strategy" />
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(245px, 1fr))",
+                gap: "0.8rem",
+              }}
+            >
+              {PRACTICE_WORDS.map((word) => (
+                <div
+                  key={word.word}
+                  style={{
+                    background: "white",
+                    borderRadius: 14,
+                    padding: "1rem",
+                    borderLeft: "5px solid #c9a84c",
+                    boxShadow: "0 6px 18px rgba(15,23,42,0.06)",
+                  }}
+                >
+                  <h3
+                    style={{
+                      color: "#2d6a7f",
+                      fontSize: "1.25rem",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {word.word}
+                  </h3>
+
+                  <div
+                    style={{
+                      fontSize: "0.82rem",
+                      color: "#475569",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {word.parts.map(([part, meaning]) => (
+                      <div key={part}>
+                        <strong>{part}</strong> = {meaning}
+                      </div>
+                    ))}
+                  </div>
+
+                  <p
+                    style={{
+                      color: "#4c7a5a",
+                      fontWeight: 800,
+                      marginTop: "0.75rem",
+                    }}
+                  >
+                    → {word.meaning}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "quiz" && <QuizPanel />}
+      </div>
+    </div>
+  );
+}
