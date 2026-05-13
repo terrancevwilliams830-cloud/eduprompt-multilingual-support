@@ -780,3 +780,320 @@ function RootCard({ data }: { data: RootData }) {
     </div>
   );
 }
+function AffixTable({
+  rows,
+}: {
+  rows: {
+    affix: string;
+    meaning: string;
+    examples: string[];
+    es: string;
+    fr: string;
+    ht: string;
+  }[];
+}) {
+  return (
+    <div style={{ overflowX: "auto" }}>
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "separate",
+          borderSpacing: "0 0.45rem",
+        }}
+      >
+        <thead>
+          <tr>
+            {["Affix", "Meaning", "Examples", "🇪🇸", "🇫🇷", "🇭🇹"].map(
+              (heading) => (
+                <th
+                  key={heading}
+                  style={{
+                    fontSize: "0.7rem",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    color: "#64748b",
+                    textAlign: "left",
+                    padding: "0 0.7rem 0.4rem",
+                  }}
+                >
+                  {heading}
+                </th>
+              )
+            )}
+          </tr>
+        </thead>
+
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.affix} style={{ background: "white" }}>
+              <td
+                style={{
+                  padding: "0.75rem",
+                  borderRadius: "10px 0 0 10px",
+                  fontWeight: 900,
+                  color: "#2d6a7f",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {row.affix}
+              </td>
+
+              <td style={{ padding: "0.75rem", color: "#334155" }}>
+                {row.meaning}
+              </td>
+
+              <td style={{ padding: "0.75rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "0.35rem",
+                  }}
+                >
+                  {row.examples.map((example) => (
+                    <span
+                      key={example}
+                      style={{
+                        background: "#f8fafc",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: 999,
+                        padding: "0.2rem 0.55rem",
+                        fontSize: "0.75rem",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {example}
+                    </span>
+                  ))}
+                </div>
+              </td>
+
+              <td style={{ padding: "0.75rem", color: "#a84c5a" }}>
+                {row.es}
+              </td>
+
+              <td style={{ padding: "0.75rem", color: "#2d6a7f" }}>
+                {row.fr}
+              </td>
+
+              <td
+                style={{
+                  padding: "0.75rem",
+                  color: "#5c4a8a",
+                  borderRadius: "0 10px 10px 0",
+                }}
+              >
+                {row.ht}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function QuizPanel() {
+  const [order] = useState(() =>
+    shuffle([...Array(QUIZ_QS.length).keys()])
+  );
+  const [current, setCurrent] = useState(0);
+  const [score, setScore] = useState(0);
+  const [answered, setAnswered] = useState(false);
+  const [chosen, setChosen] = useState<string | null>(null);
+  const [options, setOptions] = useState<string[]>([]);
+
+  const question = QUIZ_QS[order[current % QUIZ_QS.length]];
+
+  useEffect(() => {
+    setOptions(shuffle(question.o));
+    setAnswered(false);
+    setChosen(null);
+  }, [current, question.o]);
+
+  function pick(option: string) {
+    if (answered) return;
+
+    setAnswered(true);
+    setChosen(option);
+
+    if (option === question.a) {
+      setScore((previous) => previous + 1);
+    }
+  }
+
+  return (
+    <div>
+      <SectionLabel text="Can You Decode These Words Using Your Roots?" />
+
+      <div
+        style={{
+          maxWidth: 660,
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            background: "white",
+            borderRadius: 18,
+            padding: "2rem",
+            boxShadow: "0 10px 30px rgba(15,23,42,0.08)",
+            marginBottom: "1.25rem",
+            textAlign: "center",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "2rem",
+              color: "#2d6a7f",
+              marginBottom: "0.35rem",
+            }}
+          >
+            {question.w}
+          </h3>
+
+          <p
+            style={{
+              color: "#64748b",
+              marginBottom: "1.4rem",
+            }}
+          >
+            🔍 Clue: {question.b}
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "0.75rem",
+            }}
+          >
+            {options.map((option) => {
+              let background = "#ffffff";
+              let border = "2px solid #e2e8f0";
+              let color = "#0f172a";
+
+              if (answered && option === question.a) {
+                background = "#dcfce7";
+                border = "2px solid #4c7a5a";
+                color = "#166534";
+              }
+
+              if (answered && option === chosen && option !== question.a) {
+                background = "#fee2e2";
+                border = "2px solid #a84c5a";
+                color = "#991b1b";
+              }
+
+              return (
+                <button
+                  key={option}
+                  onClick={() => pick(option)}
+                  disabled={answered}
+                  style={{
+                    background,
+                    border,
+                    color,
+                    borderRadius: 12,
+                    padding: "0.85rem",
+                    cursor: answered ? "default" : "pointer",
+                    textAlign: "left",
+                    fontWeight: 700,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+
+          {answered && (
+            <p
+              style={{
+                marginTop: "1rem",
+                fontWeight: 800,
+                color: chosen === question.a ? "#166534" : "#991b1b",
+              }}
+            >
+              {chosen === question.a
+                ? "✅ Excellent! You decoded it."
+                : "❌ Not quite. Review the correct answer highlighted in green."}
+            </p>
+          )}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span
+            style={{
+              color: "#64748b",
+              fontWeight: 700,
+            }}
+          >
+            Score: {score} / {current + (answered ? 1 : 0)}
+          </span>
+
+          <button
+            onClick={() => setCurrent((previous) => previous + 1)}
+            disabled={!answered}
+            style={{
+              background: "#0f1623",
+              color: "white",
+              border: "none",
+              borderRadius: 10,
+              padding: "0.75rem 1.4rem",
+              fontWeight: 800,
+              cursor: answered ? "pointer" : "not-allowed",
+              opacity: answered ? 1 : 0.4,
+            }}
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SectionLabel({ text }: { text: string }) {
+  return (
+    <div
+      style={{
+        fontSize: "0.72rem",
+        fontWeight: 900,
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        color: "#c9a84c",
+        marginBottom: "1rem",
+        paddingBottom: "0.45rem",
+        borderBottom: "1px solid rgba(201,168,76,0.3)",
+      }}
+    >
+      {text}
+    </div>
+  );
+}
+
+function SubLabel({ text }: { text: string }) {
+  return (
+    <div
+      style={{
+        fontSize: "0.76rem",
+        fontWeight: 900,
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        color: "#64748b",
+        margin: "1.5rem 0 0.8rem",
+      }}
+    >
+      {text}
+    </div>
+  );
+}
